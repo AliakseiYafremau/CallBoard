@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<ol>
+{% for el in announcements %}
+    <li>
+        <ul>
+            <li>{{ el.user }}</li>
+            <li>{{ el.title }}</li>
+            <li>{{ el.text }}</li>
+            <li>{{ el.category }}</li>
+            <li>{{ el.date_of_creation }}</li>
+            <li><a href="{% url 'announce_detail' pk=el.pk %}">DETAIL</a></li>
+            <li><a href="{% url 'announce_update' pk=el.pk %}">EDIT</a></li>
+            <li><a href="{% url 'announce_delete' pk=el.pk %}">DELETE</a></li>
+        </ul>
+    </li>
+    <br>
+{% endfor %}
+</ol>
+</body>
+</html>

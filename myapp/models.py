@@ -1,3 +1,4 @@
+from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -11,6 +12,10 @@ class Announcement(models.Model):
     text = models.TextField()
     category = models.CharField(max_length=255, choices=CATEGORIES, default="Прочее")
     date_of_creation = models.DateTimeField(auto_now_add=True)
+
+    # Путь к этой модели на сайте
+    def get_absolute_url(self):
+        return reverse('announce_detail', args=[str(self.id)])
 
     def __str__(self):
         return self.title
