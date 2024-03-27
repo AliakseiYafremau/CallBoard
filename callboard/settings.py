@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-kgizvii=qo$)ap*i*iew9hjy2#-d72b&*5_syv5^01g!lwmu1%'
+SECRET_KEY = f"{os.getenv('SECRET_KEY')}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,13 +93,12 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = "447654972"
-EMAIL_HOST_PASSWORD = "wcwvcvsmhxhoajub"
-DEFAULT_FROM_EMAIL = "447654972@mail.ru"
+EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
+EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
+DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
