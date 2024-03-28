@@ -12,10 +12,17 @@
     <li>{{ announcement.category }}</li>
     <li>{{ announcement.date_of_creation }}</li>
 </ul>
-<form action="" method="POST">
+<form action="{% url 'comment_create' announcement.pk %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form }}
     <input type="submit" value="Comment">
 </form>
+{% if announcement.comment_set.all %}
+{% for comment in announcement.comment_set.all %}
+{{ comment.user }}:
+{{ comment.text }}
+<br>
+{% endfor %}
+{% endif %}
 </body>
 </html>

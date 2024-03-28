@@ -30,6 +30,9 @@ class Comment(models.Model):
     text = models.CharField(max_length=255)
     data_of_creation = models.DateTimeField(auto_now_add=True)
 
+    def get_absolute_url(self):
+        return reverse('announce_detail', args=[str(self.announcement_id)])
+
     def __str__(self):
         return f"{self.announcement}|{self.user}|{self.text[:10]}"
 
