@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Announcement
+from .models import Announcement, Comment
 
 
 class AnnouncementCreateForm(forms.ModelForm):
@@ -8,3 +8,10 @@ class AnnouncementCreateForm(forms.ModelForm):
     class Meta:
         model = Announcement
         fields = ['title', 'text', 'category']
+
+
+class CommentForm(forms.ModelForm):
+    """Форма создания комментария"""
+    class Meta:
+        model = Comment
+        fields = ['text']

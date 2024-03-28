@@ -1,9 +1,10 @@
 from django.shortcuts import render, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormMixin
 
 from .models import Announcement
-from .forms import AnnouncementCreateForm
+from .forms import AnnouncementCreateForm, CommentForm
 
 
 class AnnouncementListView(ListView):
@@ -18,6 +19,20 @@ class AnnouncementDetailView(DetailView):
     model = Announcement
     template_name = 'announcement_detail.html'
     context_object_name = 'announcement'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['form'] = CommentForm
+        return context_data
+
+    def post(self, request, *args, **kwargs):
+        text = request.POST.get('text')
+        print(text)
+        return reverse('announce_detail', args=[kwargs.get('pk')])
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
 
 class AnnouncementCreateView(CreateView):

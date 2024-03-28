@@ -12,5 +12,10 @@
     <li>{{ announcement.category }}</li>
     <li>{{ announcement.date_of_creation }}</li>
 </ul>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Comment">
+</form>
 </body>
 </html>
