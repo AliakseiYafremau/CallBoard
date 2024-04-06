@@ -4,10 +4,10 @@
 
 {% block content %}
   <h1>Enter the verification code</h1>
-  <form action="{% url 'confirm_user' %}">
+  <form action="{% url 'confirm_user' %}" method="POST">
     {% csrf_token %}
     <label>
-      <input type="text" type="text" name="code" placeholder="Enter the verification code">
+      <input type="text" name="code" placeholder="Enter the verification code">
     </label>
     <input type="submit" value="Submit">
   </form>

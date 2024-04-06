@@ -52,12 +52,12 @@ class AnnouncementUpdateView(UpdateView):
     model = Announcement
 
 
-class AnnouncementDeleteView(DeleteView):
-    model = Announcement
-    template_name = 'announcement_delete.html'
-
-    def get_success_url(self):
-        return reverse('announce_list')
+#class AnnouncementDeleteView(DeleteView):
+#    model = Announcement
+#    template_name = 'announcement_delete.html'
+#
+#    def get_success_url(self):
+#        return reverse('announce_list')
 
 
 class PrivatePageView(TemplateView):
