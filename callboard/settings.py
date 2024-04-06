@@ -100,10 +100,14 @@ EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
 EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
 DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
 
+
+AUTH_USER_MODEL = 'myapp.User'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_FORMS = {'signup': 'myapp.forms.CustomSignUpForm'}
+
 
 SITE_ID = 1
 

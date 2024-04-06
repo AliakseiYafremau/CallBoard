@@ -1,8 +1,12 @@
 from django.shortcuts import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 from .categories import CATEGORIES
+
+
+class User(AbstractUser):
+    code = models.CharField(max_length=15, blank=True, null=True)
 
 
 class Announcement(models.Model):

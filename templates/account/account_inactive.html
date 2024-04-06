@@ -1,0 +1,14 @@
+{% extends "account/base.html" %}
+
+{% block head_title %}{% endblock %}
+
+{% block content %}
+  <h1>Enter the verification code</h1>
+  <form action="{% url 'confirm_user' %}">
+    {% csrf_token %}
+    <label>
+      <input type="text" type="text" name="code" placeholder="Enter the verification code">
+    </label>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

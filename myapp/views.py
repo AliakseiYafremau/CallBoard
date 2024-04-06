@@ -1,9 +1,9 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormMixin
 
-from .models import Announcement, Comment
+from .models import Announcement, Comment, User
 from .forms import AnnouncementCreateForm, CommentForm
 
 
@@ -64,3 +64,17 @@ class PrivatePageView(TemplateView):
     """Представление приватной страницы каждого зарегистрированного пользователя"""
     template_name = 'private_page.html'
 
+
+class ConfirmUserView(UpdateView):
+    model = User
+    context_object_name = 'confirm_user'
+
+    def post(self, request, *args, **kwargs):
+        if 'code' in request.POST:
+            user = User.objects.filter(code=request.POST['code'])
+            if user.exists():
+                user.update(is_active=True)
+                user.update(code=None)
+            else:
+                return render(self.request, 'invalid_code.html')
+        return redirect('account_login')

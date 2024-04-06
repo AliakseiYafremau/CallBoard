@@ -1,5 +1,12 @@
 from django import forms
+from allauth.account.forms import SignupForm
 
+from string import hexdigits
+from random import sample
+
+from django.core.mail import send_mail
+
+from callboard import settings
 from .models import Announcement, Comment
 
 
@@ -15,3 +22,19 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
+
+
+class CustomSignUpForm(SignupForm):
+    def save(self, request):
+        user = super(CustomSignUpForm, self).save(request)
+        user.is_active = False
+        code = ''.join(sample(hexdigits, 5))
+        user.code = code
+        user.save()
+        send_mail(
+            subject=f'Code of activation',
+            message=f'Code of activation: {user.code}',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[user.email],
+        )
+        return user
