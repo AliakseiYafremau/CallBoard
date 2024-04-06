@@ -5,8 +5,9 @@
     <title>List</title>
 </head>
 <body>
+<h3><a href="{% url 'private_page' %}">Private page</a></h3>
+<h3><a href="{% url 'signup' %}">Sign Up</a></h3>
 <ol>
-    <h3><a href="{% url 'account_login' %}">Login</a></h3>
 {% for el in announcements %}
     <li>
         <ul>

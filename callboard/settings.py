@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'myapp',
+    'registration',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    #'allauth',
+    #'allauth.account',
+    #'allauth.socialaccount',
     #'allauth.socialaccount.providers.yandex',
 
 ]
@@ -60,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    #'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'callboard.urls'
@@ -82,13 +83,13 @@ TEMPLATES = [
 ]
 
 # Registration for allauth
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+#AUTHENTICATION_BACKENDS = [
+#    # Needed to login by username in Django admin, regardless of `allauth`
+#    'django.contrib.auth.backends.ModelBackend',
+#
+#    # `allauth` specific authentication methods, such as login by e-mail
+#    'allauth.account.auth_backends.AuthenticationBackend',
+#]
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -100,10 +101,10 @@ EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
 EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
 DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_EMAIL_REQUIRED = True
+#ACCOUNT_UNIQUE_EMAIL = True
+#ACCOUNT_AUTHENTICATION_METHOD = 'email'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 SITE_ID = 1
 

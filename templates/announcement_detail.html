@@ -11,16 +11,22 @@
     <li>{{ announcement.text }}</li>
     <li>{{ announcement.category }}</li>
     <li>{{ announcement.date_of_creation }}</li>
+    <li><a href="{% url 'announce_update' pk=announcement.pk %}">EDIT</a></li>
+    <li><a href="{% url 'announce_delete' pk=announcement.pk %}">DELETE</a></li>
 </ul>
+
 <form action="{% url 'comment_create' announcement.pk %}" method="POST">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Comment">
 </form>
+<h2>Comments:</h2>
 {% if announcement.comment_set.all %}
 {% for comment in announcement.comment_set.all %}
+<h4>
 {{ comment.user }}:
 {{ comment.text }}
+</h4>
 <br>
 {% endfor %}
 {% endif %}

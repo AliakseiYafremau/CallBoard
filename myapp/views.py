@@ -13,6 +13,11 @@ class AnnouncementListView(ListView):
     template_name = 'announcements_list.html'
     context_object_name = 'announcements'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_user_authorized'] = self.request.user.is_authenticated
+        return context
+
 
 class CommentCreateView(CreateView):
     model = Comment
@@ -53,6 +58,7 @@ class AnnouncementUpdateView(UpdateView):
 
 
 class AnnouncementDeleteView(DeleteView):
+    """Представление удаления объявления"""
     model = Announcement
     template_name = 'announcement_delete.html'
 
