@@ -6,7 +6,6 @@
 </head>
 <body>
 <ol>
-    <h3><a href="{% url 'account_login' %}">Login</a></h3>
 {% for el in announcements %}
     <li>
         <ul>
@@ -17,11 +16,25 @@
             <li>{{ el.date_of_creation }}</li>
             <li><a href="{% url 'announce_detail' pk=el.pk %}">DETAIL</a></li>
             <li><a href="{% url 'announce_update' pk=el.pk %}">EDIT</a></li>
-            <li><a href="{% url 'announce_delete' pk=el.pk %}">DELETE</a></li>
         </ul>
     </li>
     <br>
 {% endfor %}
 </ol>
+{% if not is_authenticated %}
+<h3><a href="{% url 'account_login' %}">Login</a></h3>
+{% endif %}
+
+{% if is_authenticated %}
+<h3><a href="{% url 'account_logout' %}">Logout</a></h3>
+{% endif %}
+
+{% if is_authenticated %}
+<h3><a href="{% url 'announce_create' %}">Create announcement</a></h3>
+{% endif %}
+
+{% if is_authenticated %}
+<h3><a href="{% url 'private_page' %}">Profile</a></h3>
+{% endif %}
 </body>
 </html>

@@ -32,6 +32,7 @@ class Comment(models.Model):
     # При удалении объявления все комментарии удаляются
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
+    # FIXME не правильное название
     data_of_creation = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
