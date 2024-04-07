@@ -11,8 +11,11 @@
     <li>{{ announcement.text }}</li>
     <li>{{ announcement.category }}</li>
     <li>{{ announcement.date_of_creation }}</li>
-    <li><a href="{% url 'announce_update' pk=announcement.pk %}">EDIT</a></li>
-    <li><a href="{% url 'announce_delete' pk=announcement.pk %}">DELETE</a></li>
+    <li>
+        {% for content in announcement.content.all %}
+        {{ content.file }}
+        {% endfor %}
+    </li>
 </ul>
 
 <form action="{% url 'comment_create' announcement.pk %}" method="POST">

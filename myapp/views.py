@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 from .filters import CommentFilter
-from .models import Announcement, Comment, User
+from .models import Announcement, Comment, User, AnnouncementContent, Content
 from .forms import AnnouncementCreateForm, CommentForm
 
 
@@ -50,6 +50,17 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     # Добавление поля пользователя в форму
     def form_valid(self, form):
         form.instance.user = self.request.user
+
+        announcement = form.save(commit=False)
+        announcement.save()
+        files = self.request.FILES.getlist('file')
+        print(files)
+        if files:
+            for file in files:
+                content_obj = Content(file=file)
+                content_obj.save()
+                announcement_content_obj = AnnouncementContent(announcement=announcement, content=content_obj)
+                announcement_content_obj.save()
         return super().form_valid(form)
 
 
