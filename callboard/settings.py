@@ -69,7 +69,7 @@ ROOT_URLCONF = 'callboard.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,10 +101,21 @@ EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
 EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
 DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
 
+<<<<<<< HEAD
 #ACCOUNT_EMAIL_REQUIRED = True
 #ACCOUNT_UNIQUE_EMAIL = True
 #ACCOUNT_AUTHENTICATION_METHOD = 'email'
 #ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+=======
+
+AUTH_USER_MODEL = 'myapp.User'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_FORMS = {'signup': 'myapp.forms.CustomSignUpForm'}
+
+>>>>>>> add-code-verification
 
 SITE_ID = 1
 

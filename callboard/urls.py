@@ -18,10 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from registration.views import signup, code_verification
 
+from myapp.views import ConfirmUserView
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
+<<<<<<< HEAD
     path('sign_up/', signup, name='signup'),
     path('code_verification', code_verification, name='code_ver'),
     #path('accounts/', include('allauth.urls')),
+=======
+    path('accounts/', include('allauth.urls')),
+    path('user_confirm', ConfirmUserView.as_view(), name='confirm_user')
+>>>>>>> add-code-verification
 ]

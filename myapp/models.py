@@ -1,8 +1,12 @@
 from django.shortcuts import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 from .categories import CATEGORIES
+
+
+class User(AbstractUser):
+    code = models.CharField(max_length=15, blank=True, null=True)
 
 
 class Announcement(models.Model):
@@ -28,6 +32,7 @@ class Comment(models.Model):
     # При удалении объявления все комментарии удаляются
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
+    # FIXME не правильное название
     data_of_creation = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
