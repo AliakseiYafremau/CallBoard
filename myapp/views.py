@@ -107,3 +107,5 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('private_page')
+
+#vevev
