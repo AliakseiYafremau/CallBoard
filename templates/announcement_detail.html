@@ -5,6 +5,7 @@
     <title>Detail</title>
 </head>
 <body>
+<h3><a href="{% url 'announce_list' %}">Return to main page</a></h3>
 <ul>
     <li>{{ announcement.user }}</li>
     <li>{{ announcement.title }}</li>
@@ -30,7 +31,6 @@
 {{ comment.user }}:
 {{ comment.text }}
 </h4>
-<br>
 {% endfor %}
 {% endif %}
 </body>

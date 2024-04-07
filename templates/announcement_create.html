@@ -5,6 +5,7 @@
     <title>Announcement Create</title>
 </head>
 <body>
+<h3><a href="{% url 'announce_list' %}">Return to main page</a></h3>
 <form action="" method="post" enctype="multipart/form-data" onchange="loadFile(event)">
   {% csrf_token %}
   {{  form.as_p }}

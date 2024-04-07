@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from registration.views import signup, code_verification
 
 from myapp.views import ConfirmUserView
 
