@@ -46,11 +46,10 @@ INSTALLED_APPS = [
     'myapp',
     'registration',
 
-    #'allauth',
-    #'allauth.account',
-    #'allauth.socialaccount',
-    #'allauth.socialaccount.providers.yandex',
-
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.yandex',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'allauth.account.middleware.AccountMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'callboard.urls'
@@ -101,21 +100,12 @@ EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
 EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
 DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
 
-<<<<<<< HEAD
-#ACCOUNT_EMAIL_REQUIRED = True
-#ACCOUNT_UNIQUE_EMAIL = True
-#ACCOUNT_AUTHENTICATION_METHOD = 'email'
-#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-=======
-
 AUTH_USER_MODEL = 'myapp.User'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {'signup': 'myapp.forms.CustomSignUpForm'}
-
->>>>>>> add-code-verification
 
 SITE_ID = 1
 
