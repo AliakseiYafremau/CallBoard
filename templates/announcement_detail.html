@@ -11,6 +11,11 @@
     <li>{{ announcement.text }}</li>
     <li>{{ announcement.category }}</li>
     <li>{{ announcement.date_of_creation }}</li>
+    <li>
+        {% for content in announcement.content.all %}
+        {{ content.file }}
+        {% endfor %}
+    </li>
 </ul>
 <form action="{% url 'comment_create' announcement.pk %}" method="POST">
     {% csrf_token %}
